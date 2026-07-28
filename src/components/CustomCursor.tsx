@@ -58,7 +58,7 @@ export const CustomCursor: React.FC = () => {
     <>
       {/* Small dot */}
       <motion.div
-        className="fixed top-0 left-0 w-3 h-3 bg-purple-400 rounded-full pointer-events-none z-[9999] -translate-x-1/2 -translate-y-1/2 mix-blend-difference hidden md:block"
+        className="fixed top-0 left-0 w-2.5 h-2.5 bg-indigo-400 rounded-full pointer-events-none z-[9999] -translate-x-1/2 -translate-y-1/2 mix-blend-difference hidden md:block"
         style={{ x: mouseX, y: mouseY }}
         animate={{
           scale: isHovered ? 0 : 1,
@@ -69,13 +69,13 @@ export const CustomCursor: React.FC = () => {
 
       {/* Outer magnetic aura / text tooltip container */}
       <motion.div
-        className="fixed top-0 left-0 pointer-events-none z-[9998] -translate-x-1/2 -translate-y-1/2 flex items-center justify-center rounded-full border border-purple-500/40 bg-purple-500/10 backdrop-blur-[2px] hidden md:flex"
+        className="fixed top-0 left-0 pointer-events-none z-[9998] -translate-x-1/2 -translate-y-1/2 flex items-center justify-center rounded-full border border-indigo-500/30 bg-indigo-500/10 backdrop-blur-[2px] hidden md:flex"
         style={{ x: auraX, y: auraY }}
         animate={{
-          width: isHovered ? (cursorText ? 80 : 50) : 36,
-          height: isHovered ? (cursorText ? 80 : 50) : 36,
-          borderColor: isHovered ? 'rgba(236, 72, 153, 0.6)' : 'rgba(168, 85, 247, 0.4)',
-          backgroundColor: isHovered ? 'rgba(236, 72, 153, 0.15)' : 'rgba(168, 85, 247, 0.08)',
+          width: isHovered ? (cursorText ? 80 : 48) : 34,
+          height: isHovered ? (cursorText ? 80 : 48) : 34,
+          borderColor: isHovered ? 'rgba(99, 102, 241, 0.6)' : 'rgba(99, 102, 241, 0.25)',
+          backgroundColor: isHovered ? 'rgba(99, 102, 241, 0.18)' : 'rgba(99, 102, 241, 0.05)',
         }}
         transition={{ duration: 0.25, ease: 'easeOut' }}
       >

@@ -13,7 +13,7 @@ const skillCategories: SkillCategory[] = [
   {
     title: 'Languages',
     icon: Code,
-    color: 'text-purple-400 border-purple-500/30',
+    color: 'text-indigo-400 border-indigo-500/30',
     items: ['TypeScript', 'Rust', 'Go', 'C/C++', 'Python', 'JavaScript', 'Bash', 'Lua'],
   },
   {
@@ -25,13 +25,13 @@ const skillCategories: SkillCategory[] = [
   {
     title: 'Frameworks & Runtimes',
     icon: Terminal,
-    color: 'text-pink-400 border-pink-500/30',
+    color: 'text-blue-400 border-blue-500/30',
     items: ['React', 'Next.js', 'Tokio (Rust)', 'Actix Web', 'Express', 'Hono', 'Bun', 'WebSockets'],
   },
   {
     title: 'Infrastructure & Tools',
     icon: Database,
-    color: 'text-amber-400 border-amber-500/30',
+    color: 'text-emerald-400 border-emerald-500/30',
     items: ['PostgreSQL', 'Redis', 'Docker', 'AWS (EC2/S3)', 'Cloudflare Workers', 'Nginx', 'Linux', 'Neovim'],
   },
 ];
@@ -51,13 +51,13 @@ export const SkillsMarquee: React.FC = () => {
         
         {/* Section Header */}
         <div className="space-y-3 text-left">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-panel text-xs font-mono text-pink-400">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-panel text-xs font-mono text-indigo-400">
             <Sparkles className="w-3.5 h-3.5" />
             <span>// TECH SPECTRUM & TOOLS</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
             TECHNOLOGIES & <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-indigo-200 to-indigo-400">
               FRAMEWORKS I COMMAND.
             </span>
           </h2>
@@ -88,7 +88,7 @@ export const SkillsMarquee: React.FC = () => {
                     <span
                       key={item}
                       data-cursor="TECH"
-                      className="px-3.5 py-1.5 rounded-xl font-mono text-xs text-neutral-200 glass-pill hover:border-purple-500/50 hover:text-white transition-all"
+                      className="px-3.5 py-1.5 rounded-xl font-mono text-xs text-slate-200 glass-pill hover:border-indigo-500/50 hover:text-white transition-all"
                     >
                       {item}
                     </span>
@@ -103,23 +103,23 @@ export const SkillsMarquee: React.FC = () => {
       {/* Bi-directional Infinite Marquee Section */}
       <div className="space-y-4 py-8 bg-[#06070a]/80 border-y border-white/5 backdrop-blur-md">
         {/* Row 1: Left Marquee */}
-        <div className="flex whitespace-nowrap animate-marquee-left font-mono text-sm font-bold text-neutral-400">
+        <div className="flex whitespace-nowrap animate-marquee-left font-mono text-sm font-bold text-slate-400">
           {marqueeRow1.map((skill, i) => (
             <div key={i} className="flex items-center gap-8 mx-6">
-              <span className="text-purple-400">⚡</span>
+              <span className="text-indigo-400">✦</span>
               <span className="hover:text-white transition-colors">{skill}</span>
             </div>
           ))}
           {marqueeRow1.map((skill, i) => (
             <div key={`dup1-${i}`} className="flex items-center gap-8 mx-6">
-              <span className="text-purple-400">⚡</span>
+              <span className="text-indigo-400">✦</span>
               <span className="hover:text-white transition-colors">{skill}</span>
             </div>
           ))}
         </div>
 
         {/* Row 2: Right Marquee */}
-        <div className="flex whitespace-nowrap animate-marquee-right font-mono text-sm font-bold text-neutral-400">
+        <div className="flex whitespace-nowrap animate-marquee-right font-mono text-sm font-bold text-slate-400">
           {marqueeRow2.map((skill, i) => (
             <div key={i} className="flex items-center gap-8 mx-6">
               <span className="text-cyan-400">✦</span>

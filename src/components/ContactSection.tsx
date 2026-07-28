@@ -11,12 +11,12 @@ export const ContactSection: React.FC = () => {
     navigator.clipboard.writeText(email);
     setCopied(true);
 
-    // Blast confetti effect
+    // Blast confetti effect with refined palette
     confetti({
       particleCount: 80,
       spread: 70,
       origin: { y: 0.7 },
-      colors: ['#a855f7', '#ec4899', '#06b6d4'],
+      colors: ['#6366f1', '#3b82f6', '#10b981'],
     });
 
     setTimeout(() => setCopied(false), 2500);
@@ -32,21 +32,21 @@ export const ContactSection: React.FC = () => {
       label: 'github.com/ayushwasnothere',
       href: 'https://github.com/ayushwasnothere',
       icon: Code2,
-      color: 'hover:border-purple-500/50 hover:shadow-purple-500/20',
+      color: 'hover:border-indigo-500/50 hover:shadow-indigo-500/10',
     },
     {
       name: 'LinkedIn',
       label: 'linkedin.com/in/ayushwasnothere',
       href: 'https://linkedin.com/in/ayushwasnothere',
       icon: Globe,
-      color: 'hover:border-cyan-500/50 hover:shadow-cyan-500/20',
+      color: 'hover:border-cyan-500/50 hover:shadow-cyan-500/10',
     },
     {
       name: 'Technical Blog',
       label: 'citxruzz.tech',
       href: 'https://citxruzz.tech',
       icon: Globe,
-      color: 'hover:border-pink-500/50 hover:shadow-pink-500/20',
+      color: 'hover:border-emerald-500/50 hover:shadow-emerald-500/10',
     },
   ];
 
@@ -58,10 +58,10 @@ export const ContactSection: React.FC = () => {
         <div className="rounded-3xl glass-panel glass-panel-hover p-8 md:p-16 border border-white/10 relative overflow-hidden text-center space-y-8">
           
           {/* Background Glow Orbs */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-purple-600/10 rounded-full blur-[140px] pointer-events-none" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-indigo-600/10 rounded-full blur-[140px] pointer-events-none" />
 
           {/* Eyebrow */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-panel text-xs font-mono text-purple-300">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-panel text-xs font-mono text-indigo-300">
             <Send className="w-3.5 h-3.5" />
             <span>// LET'S CONNECT & COLLABORATE</span>
           </div>
@@ -69,12 +69,12 @@ export const ContactSection: React.FC = () => {
           {/* Headline */}
           <h2 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.05]">
             HAVE A PROJECT OR ROLE IN MIND? <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-indigo-200 to-indigo-400">
               LET'S BUILD IT TOGETHER.
             </span>
           </h2>
 
-          <p className="text-neutral-400 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+          <p className="text-slate-400 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
             Whether you want to build autonomous AI agents, develop ROS 2 robotics control systems, scale high-throughput backends in Rust/Go, or discuss engineering roles — my inbox is always open.
           </p>
 
@@ -83,14 +83,14 @@ export const ContactSection: React.FC = () => {
             <button
               onClick={copyToClipboard}
               data-cursor="COPY"
-              className="group relative inline-flex items-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-purple-600 via-pink-600 to-cyan-600 text-white font-mono font-bold text-sm shadow-xl shadow-purple-500/25 hover:shadow-purple-500/40 hover:scale-105 transition-all duration-300"
+              className="group relative inline-flex items-center gap-3 px-8 py-4 rounded-full bg-white text-slate-950 font-mono font-bold text-sm shadow-xl shadow-white/10 hover:bg-slate-200 hover:scale-105 transition-all duration-300"
             >
-              <Mail className="w-4 h-4" />
+              <Mail className="w-4 h-4 text-slate-950" />
               <span>{email}</span>
               {copied ? (
-                <Check className="w-4 h-4 text-emerald-300" />
+                <Check className="w-4 h-4 text-emerald-600" />
               ) : (
-                <Copy className="w-4 h-4 text-neutral-300 group-hover:text-white transition-colors" />
+                <Copy className="w-4 h-4 text-slate-500 group-hover:text-slate-950 transition-colors" />
               )}
             </button>
           </div>
@@ -119,12 +119,12 @@ export const ContactSection: React.FC = () => {
                   className={`p-5 rounded-2xl glass-panel glass-panel-hover flex items-center justify-between group border border-white/5 ${social.color}`}
                 >
                   <div className="space-y-1">
-                    <div className="text-xs font-mono text-neutral-400">{social.name}</div>
-                    <div className="text-sm font-mono font-bold text-white group-hover:text-purple-300 transition-colors">
+                    <div className="text-xs font-mono text-slate-400">{social.name}</div>
+                    <div className="text-sm font-mono font-bold text-white group-hover:text-indigo-300 transition-colors">
                       {social.label.replace('https://', '')}
                     </div>
                   </div>
-                  <Icon className="w-5 h-5 text-neutral-400 group-hover:text-white transition-colors" />
+                  <Icon className="w-5 h-5 text-slate-400 group-hover:text-white transition-colors" />
                 </a>
               );
             })}
@@ -132,7 +132,7 @@ export const ContactSection: React.FC = () => {
         </div>
 
         {/* Footer */}
-        <footer className="mt-16 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs text-neutral-400">
+        <footer className="mt-16 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs text-slate-400">
           <div>
             © {new Date().getFullYear()} Ayush Shah. Built with React, TypeScript, Bun & Tailwind.
           </div>

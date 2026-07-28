@@ -26,7 +26,7 @@ const projectsData: Project[] = [
     stack: ['TypeScript', 'Node.js', 'LLMs', 'CLI', 'TailwindCSS'],
     repoLink: 'https://github.com/ayushwasnothere/forge',
     liveLink: 'https://forge.citxruzz.tech',
-    accent: '#a855f7',
+    accent: '#6366f1',
     badgeText: 'FEATURED AI AGENT',
     previewType: 'terminal',
   },
@@ -50,7 +50,7 @@ const projectsData: Project[] = [
     description: 'TypeScript infrastructure deployment utility and automation framework for managing cloud workloads, container orchestration, and serverless infrastructure on AWS.',
     stack: ['TypeScript', 'Node.js', 'AWS', 'Docker', 'DevOps'],
     repoLink: 'https://github.com/ayushwasnothere/cloud-it',
-    accent: '#f97316',
+    accent: '#3b82f6',
     badgeText: 'DEVOPS & CLOUD',
     previewType: 'cloud',
   },
@@ -63,7 +63,7 @@ const projectsData: Project[] = [
     stack: ['Rust', 'Tokio', 'Bun', 'PostgreSQL', 'React', 'Nginx'],
     repoLink: 'https://github.com/ayushwasnothere/rust-smtp',
     liveLink: 'https://tmail.citxruzz.tech',
-    accent: '#ec4899',
+    accent: '#10b981',
     badgeText: 'RUST SYSTEMS',
     previewType: 'mail',
   },
@@ -76,7 +76,7 @@ const projectsData: Project[] = [
     stack: ['Next.js', 'TypeScript', 'WebSockets', 'Redis', 'PostgreSQL', 'Prisma'],
     repoLink: 'https://github.com/ayushwasnothere/chat-app',
     liveLink: 'https://raven.citxruzz.tech',
-    accent: '#10b981',
+    accent: '#818cf8',
     badgeText: 'REALTIME WEBSOCKETS',
     previewType: 'chat',
   },
@@ -89,7 +89,7 @@ const projectsData: Project[] = [
     stack: ['Go', 'PostgreSQL', 'React', 'Vite', 'Cloudflare Turnstile'],
     repoLink: 'https://github.com/ayushwasnothere/shrty',
     liveLink: 'https://shrty.citxruzz.tech',
-    accent: '#eab308',
+    accent: '#059669',
     badgeText: 'GO MICROSERVICE',
     previewType: 'link',
   },
@@ -102,7 +102,7 @@ const projectsData: Project[] = [
     stack: ['React', 'TypeScript', 'WebSockets', 'Stockfish.js', 'TailwindCSS'],
     repoLink: 'https://github.com/ayushwasnothere/ts-chess',
     liveLink: 'https://chess.citxruzz.tech',
-    accent: '#8b5cf6',
+    accent: '#0284c7',
     badgeText: 'GAME ENGINE',
     previewType: 'chess',
   },
@@ -114,7 +114,7 @@ const projectsData: Project[] = [
     description: 'Bitwarden-like Chrome password manager extension featuring client-side encryption, zero-knowledge architecture, and local vault storage.',
     stack: ['React', 'TypeScript', 'Chrome API', 'LocalStorage'],
     repoLink: 'https://github.com/ayushwasnothere/pwmgr',
-    accent: '#14b8a6',
+    accent: '#0d9488',
     badgeText: 'SECURITY EXTENSION',
     previewType: 'extension',
   },
@@ -136,20 +136,20 @@ export const ProjectsShowcase: React.FC = () => {
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <div className="space-y-3 text-left">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-panel text-xs font-mono text-cyan-400">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-panel text-xs font-mono text-indigo-400">
               <Sparkles className="w-3.5 h-3.5" />
               <span>// SELECTED WORKS</span>
             </div>
             <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
               FEATURED <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-indigo-200 to-indigo-400">
                 ENGINEERING PROJECTS.
               </span>
             </h2>
           </div>
 
           {/* Category Filter Tabs */}
-          <div className="flex flex-wrap gap-2 p-1.5 rounded-2xl glass-panel self-start md:self-auto">
+          <div className="flex flex-wrap gap-1.5 p-1.5 rounded-2xl glass-panel self-start md:self-auto">
             {categories.map((cat) => (
               <button
                 key={cat}
@@ -157,8 +157,8 @@ export const ProjectsShowcase: React.FC = () => {
                 data-cursor="FILTER"
                 className={`px-4 py-2 rounded-xl text-xs font-mono transition-all duration-300 ${
                   activeTab === cat
-                    ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold shadow-lg shadow-purple-500/20'
-                    : 'text-neutral-400 hover:text-white hover:bg-white/5'
+                    ? 'bg-white text-slate-950 font-bold shadow-md shadow-white/10'
+                    : 'text-slate-400 hover:text-white hover:bg-white/5'
                 }`}
               >
                 {cat}
@@ -206,7 +206,7 @@ export const ProjectsShowcase: React.FC = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                         data-cursor="GIT"
-                        className="p-2 rounded-xl glass-panel hover:bg-white/10 text-neutral-400 hover:text-white transition-colors"
+                        className="p-2 rounded-xl glass-panel hover:bg-white/10 text-slate-400 hover:text-white transition-colors"
                         title="View GitHub Repository"
                       >
                         <Code2 className="w-4 h-4" />
@@ -217,7 +217,7 @@ export const ProjectsShowcase: React.FC = () => {
                           target="_blank"
                           rel="noopener noreferrer"
                           data-cursor="LIVE"
-                          className="p-2 rounded-xl glass-panel hover:bg-white/10 text-neutral-400 hover:text-white transition-colors"
+                          className="p-2 rounded-xl glass-panel hover:bg-white/10 text-slate-400 hover:text-white transition-colors"
                           title="Open Live Demo"
                         >
                           <ExternalLink className="w-4 h-4" />
@@ -228,24 +228,24 @@ export const ProjectsShowcase: React.FC = () => {
 
                   {/* Project Title & Tagline */}
                   <div>
-                    <h3 className="text-2xl font-bold font-mono text-white group-hover:text-purple-300 transition-colors">
+                    <h3 className="text-2xl font-bold font-mono text-white group-hover:text-indigo-300 transition-colors">
                       {project.name}
                     </h3>
-                    <p className="text-xs font-mono text-neutral-400 mt-1">{project.tagline}</p>
+                    <p className="text-xs font-mono text-slate-400 mt-1">{project.tagline}</p>
                   </div>
 
                   {/* Description */}
-                  <p className="text-neutral-300 text-sm leading-relaxed">{project.description}</p>
+                  <p className="text-slate-300 text-sm leading-relaxed">{project.description}</p>
 
                   {/* Interactive Visual Preview Mockup Box */}
                   <div className="rounded-2xl bg-[#06070a] border border-white/10 p-4 font-mono text-xs overflow-hidden">
                     {project.previewType === 'terminal' && (
                       <div className="space-y-2">
-                        <div className="flex items-center gap-1.5 text-neutral-500 text-[11px] pb-2 border-b border-white/5">
-                          <Terminal className="w-3.5 h-3.5 text-purple-400" />
+                        <div className="flex items-center gap-1.5 text-slate-500 text-[11px] pb-2 border-b border-white/5">
+                          <Terminal className="w-3.5 h-3.5 text-indigo-400" />
                           <span>forge-agent exec --multi-file</span>
                         </div>
-                        <div className="text-purple-300">❯ Analyzing workspace files...</div>
+                        <div className="text-indigo-300">❯ Analyzing workspace files...</div>
                         <div className="text-emerald-400">✓ 4 modifications applied cleanly</div>
                       </div>
                     )}
@@ -259,7 +259,7 @@ export const ProjectsShowcase: React.FC = () => {
                           </span>
                           <span className="text-emerald-400">STATUS: GAZEBO SIM</span>
                         </div>
-                        <div className="text-neutral-400 text-[11px]">
+                        <div className="text-slate-400 text-[11px]">
                           Joint 1..7 trajectories calculated | Collision check: PASS
                         </div>
                       </div>
@@ -267,14 +267,14 @@ export const ProjectsShowcase: React.FC = () => {
 
                     {project.previewType === 'mail' && (
                       <div className="space-y-2">
-                        <div className="flex items-center justify-between text-[11px] text-pink-400 pb-2 border-b border-white/5">
+                        <div className="flex items-center justify-between text-[11px] text-indigo-400 pb-2 border-b border-white/5">
                           <span className="flex items-center gap-1.5">
                             <Mail className="w-3.5 h-3.5" />
                             <span>TOKIO SMTP SERVER</span>
                           </span>
                           <span className="text-white font-bold">PORT 25 / SSL</span>
                         </div>
-                        <div className="text-neutral-400 text-[11px]">
+                        <div className="text-slate-400 text-[11px]">
                           Asynchronous MIME stream processing... 100% Rust
                         </div>
                       </div>
@@ -287,9 +287,9 @@ export const ProjectsShowcase: React.FC = () => {
                             <MessageSquare className="w-3.5 h-3.5" />
                             <span>WEBSOCKETS + REDIS</span>
                           </span>
-                          <span className="text-neutral-400">&lt;10ms LATENCY</span>
+                          <span className="text-slate-400">&lt;10ms LATENCY</span>
                         </div>
-                        <div className="text-neutral-300 text-[11px]">
+                        <div className="text-slate-300 text-[11px]">
                           Raven WebSocket connected. Real-time pub/sub ready.
                         </div>
                       </div>
@@ -297,14 +297,14 @@ export const ProjectsShowcase: React.FC = () => {
 
                     {['cloud', 'link', 'chess', 'extension'].includes(project.previewType) && (
                       <div className="space-y-2">
-                        <div className="flex items-center justify-between text-[11px] text-amber-400 pb-2 border-b border-white/5">
+                        <div className="flex items-center justify-between text-[11px] text-blue-400 pb-2 border-b border-white/5">
                           <span className="flex items-center gap-1.5">
                             <Code2 className="w-3.5 h-3.5" />
                             <span>SYSTEM ENGINE</span>
                           </span>
                           <span className="text-emerald-400 font-bold">OPTIMIZED</span>
                         </div>
-                        <div className="text-neutral-400 text-[11px]">
+                        <div className="text-slate-400 text-[11px]">
                           High-throughput backend architecture active.
                         </div>
                       </div>
@@ -317,7 +317,7 @@ export const ProjectsShowcase: React.FC = () => {
                   {project.stack.map((tech) => (
                     <span
                       key={tech}
-                      className="px-2.5 py-1 rounded-lg text-[11px] font-mono glass-pill text-neutral-300"
+                      className="px-2.5 py-1 rounded-lg text-[11px] font-mono glass-pill text-slate-300"
                     >
                       {tech}
                     </span>

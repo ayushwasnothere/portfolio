@@ -5,113 +5,66 @@ import { useGSAP } from '@gsap/react';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const stats = [
-  { number: '8+', label: 'Projects' },
-  { number: '6+', label: 'Languages' },
-  { number: '1+', label: 'Years Experience' },
-];
+export default function About() {
+  const container = useRef<HTMLDivElement>(null);
 
-const About = () => {
-  const containerRef = useRef<HTMLElement>(null);
+  // Single unified scrubbed timeline: Entrance -> Hold -> Exit
+  useGSAP(() => {
+    const elements = container.current?.querySelectorAll('.slide-up-and-fade');
+    if (!elements || elements.length === 0) return;
 
-  useGSAP(
-    () => {
-      gsap.from('.about-image-wrapper', {
-        x: -50,
-        opacity: 0,
-        duration: 1,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: '#about',
-          start: 'top 80%',
-          toggleActions: 'play none none none',
-        },
-      });
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: container.current,
+        start: 'top 85%',
+        end: 'bottom 15%',
+        scrub: 0.5,
+      },
+    });
 
-      gsap.from('.about-text', {
-        x: 50,
-        opacity: 0,
-        duration: 1,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: '#about',
-          start: 'top 80%',
-          toggleActions: 'play none none none',
-        },
-      });
-
-      gsap.from('.stat-item', {
-        y: 30,
-        opacity: 0,
-        duration: 0.6,
-        stagger: 0.15,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: '.about-stats',
-          start: 'top 80%',
-          toggleActions: 'play none none none',
-        },
-      });
-    },
-    { scope: containerRef }
-  );
+    // 1. Entrance from bottom
+    tl.fromTo(
+      elements,
+      { y: 120, opacity: 0 },
+      { y: 0, opacity: 1, stagger: 0.05, duration: 1, ease: 'power1.out' }
+    )
+    // 2. Exit to top (held visible during middle of section scroll)
+    .to(
+      elements,
+      { y: -120, opacity: 0, stagger: 0.02, duration: 1, ease: 'power1.in' },
+      '>+1.2'
+    );
+  }, { scope: container });
 
   return (
-    <section id="about" className="section" ref={containerRef}>
-      <div className="container">
-        <div className="section-header">
-          <span className="section-label">// about me</span>
-        </div>
+    <section id="about" className="pb-section">
+      <div className="container" ref={container}>
+        <h2 className="text-4xl md:text-6xl font-thin mb-20 slide-up-and-fade leading-tight">
+          I believe in a user centered design approach, ensuring that every project I work on is tailored to meet the specific needs of its users.
+        </h2>
 
-        <div className="about-grid">
-          {/* Profile image with accent overlays */}
-          <div className="about-image-wrapper">
-            <img
-              className="about-image"
-              src="/pic.jpg"
-              alt="Ayush Shah"
-              loading="lazy"
-            />
-            <div className="about-image-border" />
-            <div className="about-image-accent" />
+        <p className="pb-3 border-b border-border text-muted-foreground slide-up-and-fade">
+          This is me.
+        </p>
+
+        <div className="grid md:grid-cols-12 mt-9 gap-6">
+          <div className="md:col-span-5">
+            <p className="text-5xl slide-up-and-fade">
+              Hi, I'm Ayush.
+            </p>
           </div>
-
-          {/* Bio content */}
-          <div className="about-text">
-            <h2>
-              Building things that <span className="gradient-text">matter</span>
-            </h2>
-
-            <p>
-              I'm a <strong>Software Engineer</strong> with a deep passion for
-              building intelligent systems at the intersection of{' '}
-              <strong>AI, robotics, and high-performance computing</strong>. From
-              training <strong>autonomous agents</strong> to designing{' '}
-              <strong>real-time control pipelines</strong>, I love tackling
-              problems where precision and creativity collide.
-            </p>
-
-            <p>
-              When I'm not writing code, you'll find me exploring new
-              frameworks, contributing to open-source, or diving into research
-              papers on <strong>reinforcement learning</strong> and{' '}
-              <strong>robotic manipulation</strong>.
-            </p>
-
-            {/* Stat counters */}
-            <div className="about-stats">
-              {stats.map((stat) => (
-                <div key={stat.label} className="stat-item">
-                  <div className="stat-number gradient-text">{stat.number}</div>
-                  <div className="stat-label">{stat.label}</div>
-                </div>
-              ))}
+          <div className="md:col-span-7">
+            <div className="text-lg text-muted-foreground max-w-[450px]">
+              <p className="slide-up-and-fade">
+                I'm a software engineer dedicated to turning ideas into creative solutions. I specialize in building autonomous AI agents, high-performance systems, and robotic control pipelines.
+              </p>
+              <p className="mt-3 slide-up-and-fade">
+                Currently interning at Roboparadigm, where I develop motion planning algorithms for industrial manipulators using ROS 2, MoveIt Task Constructor, and Gazebo.
+              </p>
             </div>
           </div>
         </div>
       </div>
     </section>
   );
-};
-
-export default About;
+}

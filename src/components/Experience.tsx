@@ -6,63 +6,72 @@ import { experience } from '../data/experience';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const Experience = () => {
-  const containerRef = useRef<HTMLElement>(null);
+export default function Experience() {
+  const container = useRef<HTMLDivElement>(null);
 
-  useGSAP(
-    () => {
-      gsap.from('.experience-card', {
-        y: 40,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.2,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: '#experience',
-          start: 'top 80%',
-          toggleActions: 'play none none none',
-        },
-      });
-    },
-    { scope: containerRef }
-  );
+  // Single unified scrubbed timeline: Entrance -> Hold -> Exit
+  useGSAP(() => {
+    const elements = container.current?.querySelectorAll('.slide-up-and-fade');
+    if (!elements || elements.length === 0) return;
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: container.current,
+        start: 'top 85%',
+        end: 'bottom 15%',
+        scrub: 0.5,
+      },
+    });
+
+    // 1. Entrance from bottom
+    tl.fromTo(
+      elements,
+      { y: 120, opacity: 0 },
+      { y: 0, opacity: 1, stagger: 0.05, duration: 1, ease: 'power1.out' }
+    )
+    // 2. Exit to top
+    .to(
+      elements,
+      { y: -120, opacity: 0, stagger: 0.02, duration: 1, ease: 'power1.in' },
+      '>+1.2'
+    );
+  }, { scope: container });
 
   return (
-    <section id="experience" className="section" ref={containerRef}>
-      <div className="container">
-        <div className="section-header">
-          <span className="section-label">// experience</span>
-          <h2 className="section-title">Where I've Worked</h2>
+    <section id="experience" className="pb-section">
+      <div className="container" ref={container}>
+        <div className="flex items-center gap-4 mb-10 slide-up-and-fade">
+          <h2 className="text-xl uppercase leading-none">Experience</h2>
         </div>
-
-        {experience.map((exp) => (
-          <div key={`${exp.company}-${exp.role}`} className="experience-card">
-            <div className="experience-header">
-              <div>
-                <h3 className="experience-role">{exp.role}</h3>
-                <p className="experience-company">{exp.company}</p>
+        <div className="space-y-12">
+          {experience.map(exp => (
+            <div key={exp.company} className="grid md:grid-cols-12 gap-6">
+              <div className="md:col-span-5">
+                <p className="text-3xl md:text-4xl font-anton text-muted-foreground slide-up-and-fade">
+                  {exp.company}
+                </p>
+                <p className="text-muted-foreground mt-2 slide-up-and-fade">{exp.period}</p>
               </div>
-              <span className="experience-period">{exp.period}</span>
+              <div className="md:col-span-7">
+                <p className="text-2xl mb-2 slide-up-and-fade">{exp.role}</p>
+                <p className="text-sm text-muted-foreground mb-4 slide-up-and-fade">{exp.location}</p>
+                <ul className="space-y-2 text-muted-foreground">
+                  {exp.bullets.map((bullet, i) => (
+                    <li key={i} className="slide-up-and-fade">— {bullet}</li>
+                  ))}
+                </ul>
+                <div className="flex flex-wrap gap-2 mt-4">
+                  {exp.techBadges.map(badge => (
+                    <span key={badge} className="text-xs px-3 py-1 border border-border rounded-full text-muted-foreground slide-up-and-fade">
+                      {badge}
+                    </span>
+                  ))}
+                </div>
+              </div>
             </div>
-
-            <ul className="experience-bullets">
-              {exp.bullets.map((bullet, i) => (
-                <li key={i}>{bullet}</li>
-              ))}
-            </ul>
-
-            <div className="experience-badges">
-              {exp.techBadges.map((badge) => (
-                <span key={badge} className="pill">
-                  {badge}
-                </span>
-              ))}
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   );
-};
-
-export default Experience;
+}

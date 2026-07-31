@@ -1,132 +1,354 @@
 @import "tailwindcss";
 
+/* ============================
+   DESIGN SYSTEM — Tajmirul-inspired
+   Monochrome dark + single accent
+   ============================ */
+
+@theme {
+  --font-anton: 'Anton', sans-serif;
+  --font-inter: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --color-background: hsl(0 0% 6%);
+  --color-background-light: hsl(0 0% 12%);
+  --color-foreground: hsl(0 0% 87%);
+  --color-muted-foreground: hsl(0 0% 50%);
+  --color-primary: hsl(239 84% 67%);
+  --color-primary-hover: hsl(239 84% 57%);
+  --color-primary-foreground: hsl(0 0% 100%);
+  --color-border: hsl(0 0% 18%);
+}
+
+/* ============================
+   BASE & LAYOUT
+   ============================ */
 @layer base {
-  :root {
-    --bg-dark: #07080a;
-    --bg-card: rgba(13, 15, 20, 0.75);
-    --bg-card-hover: rgba(20, 23, 31, 0.9);
-    --border-card: rgba(255, 255, 255, 0.07);
-    --border-card-hover: rgba(99, 102, 241, 0.35);
-    --accent-indigo: #6366f1;
-    --accent-blue: #3b82f6;
-    --accent-cyan: #06b6d4;
-    --accent-emerald: #10b981;
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: auto; /* Lenis handles smooth scroll */
   }
 
   body {
-    background-color: var(--bg-dark);
-    color: #f1f5f9;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-inter);
     overflow-x: hidden;
-    selection-background-color: rgba(99, 102, 241, 0.3);
-    selection-color: #ffffff;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
-  /* Custom sleek scrollbar */
+  ::selection {
+    background-color: hsl(239 84% 67% / 0.3);
+    color: #ffffff;
+  }
+
+  /* Hide native scrollbar */
   ::-webkit-scrollbar {
-    width: 7px;
+    display: none;
+    width: 0px;
   }
-  ::-webkit-scrollbar-track {
-    background: #050608;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: #1e2230;
-    border-radius: 4px;
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    background: #33394f;
+  * {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
   }
 }
 
-/* Glassmorphism utilities - Obsidian & Steel */
-.glass-panel {
-  background: rgba(13, 15, 21, 0.7);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.07);
+/* Central layout container for all sections */
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
 
-.glass-panel-hover {
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+@media (max-width: 640px) {
+  .container {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
 }
 
-.glass-panel-hover:hover {
-  background: rgba(18, 21, 30, 0.85);
-  border-color: rgba(99, 102, 241, 0.35);
-  box-shadow: 0 10px 40px -10px rgba(99, 102, 241, 0.12);
+.pb-section {
+  padding-bottom: 8rem;
 }
 
-.glass-pill {
-  background: rgba(255, 255, 255, 0.035);
+@media (max-width: 768px) {
+  .pb-section {
+    padding-bottom: 5rem;
+  }
+}
+
+/* ============================
+   ANIMATION UTILITIES
+   ============================ */
+.slide-up-and-fade {
+  will-change: transform, opacity;
+}
+
+.slide-up {
+  will-change: transform, opacity;
+}
+
+/* Left-to-Right Text Color Fill Animation on Hover (Slower & Elegant) */
+.project-title-fill {
+  background-image: linear-gradient(
+    to right,
+    var(--color-primary) 50%,
+    var(--color-foreground) 50%
+  );
+  background-size: 200% 100%;
+  background-position: 100% 0;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: background-position 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-block;
+}
+
+.group:hover .project-title-fill {
+  background-position: 0% 0;
+}
+
+/* ============================
+   BUTTON — Circle-expand hover
+   ============================ */
+.btn-primary {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  height: 3rem;
+  padding: 0 2rem;
+  font-family: var(--font-anton);
+  font-size: 1.125rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: var(--color-primary);
+  color: var(--color-primary-foreground);
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  text-decoration: none;
+  transition: background 0.3s;
+}
+
+.btn-primary .btn-bg {
+  position: absolute;
+  top: 200%;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background: white;
+  border-radius: 50%;
+  transition: top 0.4s ease;
+  z-index: 1;
+}
+
+.btn-primary:hover .btn-bg {
+  top: 0;
+  border-radius: 0;
+}
+
+.btn-primary .btn-text {
+  position: relative;
+  z-index: 2;
+  transition: color 0.3s;
+}
+
+.btn-primary:hover .btn-text {
+  color: black;
+}
+
+/* Outline Button */
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  height: 3rem;
+  padding: 0 2rem;
+  font-family: var(--font-anton);
+  font-size: 1.125rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: 1px solid var(--color-border);
+  color: var(--color-foreground);
+  text-decoration: none;
+  transition: border-color 0.3s, color 0.3s;
+}
+
+.btn-outline:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+/* ============================
+   NAVBAR — Tajmirul drawer style
+   ============================ */
+.hamburger {
+  position: fixed;
+  top: 1.5rem;
+  right: 2rem;
+  z-index: 45;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  transition: all 0.3s ease;
+}
+
+.hamburger:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--color-primary);
+}
+
+.hamburger span {
+  width: 20px;
+  height: 2px;
+  background-color: var(--color-foreground);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+
+  .open & {
+    &:nth-child(1) {
+      transform: translateY(3.5px) rotate(45deg);
+    }
+    &:nth-child(2) {
+      transform: translateY(-3.5px) rotate(-45deg);
+    }
+  }
+}
+
+/* Fullscreen Nav Overlay & Drawer */
+.nav-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  background: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.07);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
 }
 
-/* Refined Linear-Style Text Gradients (Silver, Indigo, Emerald) */
-.text-gradient-silver {
-  background: linear-gradient(135deg, #ffffff 40%, #94a3b8 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+.nav-overlay.visible {
+  opacity: 1;
+  pointer-events: auto;
 }
 
-.text-gradient-indigo {
-  background: linear-gradient(135deg, #ffffff 30%, #818cf8 70%, #6366f1 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+.nav-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  max-width: 480px;
+  z-index: 42;
+  background: var(--color-background-light);
+  border-left: 1px solid var(--color-border);
+  padding: 6rem 3rem 3rem;
+  transform: translateX(100%);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  justify-between: space-between;
+  overflow-y: auto;
 }
 
-.text-gradient-emerald {
-  background: linear-gradient(135deg, #ffffff 30%, #34d399 70%, #059669 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+.nav-drawer.open {
+  transform: translateX(0);
 }
 
-.text-gradient-cyan {
-  background: linear-gradient(135deg, #ffffff 30%, #38bdf8 70%, #0284c7 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+.nav-menu-item {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  transition: color 0.3s ease;
 }
 
-/* Subtly textured noise background */
-.bg-noise {
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.025'/%3E%3C/svg%3E");
+.nav-menu-dot {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: scale(0.5);
+  transition: all 0.3s ease;
 }
 
-/* Keyframe animations */
-@keyframes pulseGlow {
-  0%, 100% {
-    opacity: 0.3;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.55;
-    transform: scale(1.06);
-  }
+.nav-menu-item:hover .nav-menu-dot {
+  opacity: 1;
+  transform: scale(1);
 }
 
-.animate-pulse-slow {
-  animation: pulseGlow 7s ease-in-out infinite;
+/* ============================
+   CUSTOM CURSOR FOLLOWER
+   ============================ */
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: var(--color-primary);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 999;
+  mix-blend-mode: difference;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
 }
 
-@keyframes marqueeLeft {
-  0% { transform: translateX(0%); }
-  100% { transform: translateX(-50%); }
+.custom-cursor.hovering {
+  transform: scale(2.8);
 }
 
-@keyframes marqueeRight {
-  0% { transform: translateX(-50%); }
-  100% { transform: translateX(0%); }
+/* ============================
+   MINI TERMINAL GAMES
+   ============================ */
+.terminal-window {
+  border-radius: 12px;
+  background: hsl(0 0% 8%);
+  border: 1px solid var(--color-border);
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
 }
 
-.animate-marquee-left {
-  animation: marqueeLeft 40s linear infinite;
+.terminal-header {
+  height: 36px;
+  padding: 0 16px;
+  background: hsl(0 0% 10%);
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-.animate-marquee-right {
-  animation: marqueeRight 40s linear infinite;
-}
+.terminal-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
 
-.animate-marquee-left:hover,
-.animate-marquee-right:hover {
-  animation-play-state: paused;
+  &.red { background: #ff5f56; }
+  &.yellow { background: #ffbd2e; }
+  &.green { background: #27c93f; }
 }

@@ -1,35 +1,37 @@
-import { useState } from 'react';
-import './styles/index.css';
-import { Preloader } from './components/Preloader';
-import { CustomCursor } from './components/CustomCursor';
-import { Navbar } from './components/Navbar';
-import { Hero } from './components/Hero';
-import { AboutBento } from './components/AboutBento';
-import { ProjectsShowcase } from './components/ProjectsShowcase';
-import { ExperienceTimeline } from './components/ExperienceTimeline';
-import { SkillsMarquee } from './components/SkillsMarquee';
-import { ContactSection } from './components/ContactSection';
+import { Routes, Route } from 'react-router-dom';
+import { ReactLenis } from 'lenis/react';
+import Navbar from './components/Navbar';
+import CustomCursor from './components/CustomCursor';
+import Preloader from './components/Preloader';
+import PageTransition from './components/PageTransition';
+import ScrollProgress from './components/ScrollProgress';
+import BackgroundAnimation from './components/BackgroundAnimation';
+import Home from './pages/Home';
+import ProjectDetail from './pages/ProjectDetail';
+import BlogList from './pages/BlogList';
+import BlogDetail from './pages/BlogDetail';
+
+import { Analytics } from '@vercel/analytics/react';
 
 function App() {
-  const [loading, setLoading] = useState(true);
-
   return (
-    <>
-      {loading && <Preloader onComplete={() => setLoading(false)} />}
-
-      <div className={`min-h-screen bg-[#030304] text-white bg-noise selection:bg-purple-500/30 selection:text-white transition-opacity duration-700 ${loading ? 'opacity-0' : 'opacity-100'}`}>
-        <CustomCursor />
-        <Navbar />
-        <main>
-          <Hero />
-          <AboutBento />
-          <ProjectsShowcase />
-          <ExperienceTimeline />
-          <SkillsMarquee />
-          <ContactSection />
-        </main>
-      </div>
-    </>
+    <ReactLenis root options={{ lerp: 0.1, duration: 1.4 }}>
+      <Analytics />
+      <BackgroundAnimation />
+      <Preloader />
+      <PageTransition />
+      <ScrollProgress />
+      <CustomCursor />
+      <Navbar />
+      <main className="relative z-10">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/project/:slug" element={<ProjectDetail />} />
+          <Route path="/blog" element={<BlogList />} />
+          <Route path="/blog/:slug" element={<BlogDetail />} />
+        </Routes>
+      </main>
+    </ReactLenis>
   );
 }
 

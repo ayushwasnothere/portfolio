@@ -55,6 +55,14 @@ const Navbar = () => {
 
   return (
     <>
+      <a
+        href="/resume.pdf"
+        target="_blank"
+        rel="noreferrer"
+        className="fixed top-[1.6rem] right-[5.5rem] z-45 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-md text-xs font-mono text-foreground hover:text-primary hover:border-primary transition-all flex items-center gap-1 shadow-md"
+      >
+        Resume ↗
+      </a>
       <button
         className={`hamburger ${isOpen ? 'open' : ''}`}
         onClick={() => setIsOpen(!isOpen)}
@@ -97,6 +105,16 @@ const Navbar = () => {
           <div>
             <h3 className="text-muted-foreground text-sm font-semibold tracking-wider mb-4">SOCIAL</h3>
             <ul className="flex flex-col gap-3">
+              <li>
+                <a
+                  href="/resume.pdf"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-primary hover:underline transition-colors font-medium text-lg flex items-center gap-1.5"
+                >
+                  Resume PDF ↗
+                </a>
+              </li>
               <li>
                 <a
                   href="https://github.com/ayushwasnothere"

@@ -88,7 +88,7 @@ export default function Hero() {
                   rel="noreferrer"
                   className="px-6 py-3 border border-border rounded-lg text-sm font-semibold hover:border-primary hover:text-primary transition-colors"
                 >
-                  GitHub Profile ↗
+                  GitHub ↗
                 </a>
               </div>
             </div>
@@ -106,6 +106,16 @@ export default function Hero() {
               <div className="slide-up-and-fade">
                 <h5 className="text-3xl sm:text-4xl font-anton text-primary mb-1.5">1+</h5>
                 <p className="text-muted-foreground">Years Experience</p>
+                <div className="mt-3 pt-3 border-t border-border/20 flex justify-center lg:justify-end">
+                  <a
+                    href="/resume.pdf"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-1.5 text-xs font-mono text-primary hover:underline transition-colors tracking-wider uppercase font-semibold"
+                  >
+                    Resume ↗
+                  </a>
+                </div>
               </div>
             </div>
           </div>

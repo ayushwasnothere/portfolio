@@ -1,6 +1,6 @@
 # Ayush Shah — Portfolio & Robotics/AI Journal
 
-[![Live Portfolio](https://img.shields.io/badge/Live_Portfolio-citxruzz.tech-6366f1?style=for-the-badge&logo=vercel&logoColor=white)](https://citxruzz.tech)
+[![Live Portfolio](https://img.shields.io/badge/Live_Portfolio-cytrus.me-6366f1?style=for-the-badge&logo=vercel&logoColor=white)](https://cytrus.me)
 [![GitHub Repository](https://img.shields.io/badge/GitHub-ayushwasnothere%2Fportfolio-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/ayushwasnothere/portfolio)
 [![Built with Bun](https://img.shields.io/badge/Built_with-Bun-fbf0df?style=for-the-badge&logo=bun&logoColor=black)](https://bun.sh)
 [![React](https://img.shields.io/badge/React_19-TypeScript-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev)
@@ -85,4 +85,4 @@ portfolio/
 
 ## 📄 License
 
-Designed & Developed by [Ayush Shah](https://citxruzz.tech) © 2026.
+Designed & Developed by [Ayush Shah](https://cytrus.me) © 2036.

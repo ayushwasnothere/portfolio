@@ -1,0 +1,176 @@
+\documentclass[a4paper,10pt]{article}
+
+% --- MODERN FONT & ENCODING ---
+\usepackage{fontspec} % requires XeLaTeX or LuaLaTeX
+\setmainfont{Inter}   % Modern sans-serif font
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% --- LAYOUT & COLOR ---
+\usepackage{geometry}
+\geometry{
+  a4paper,
+  left=0.8in,
+  right=0.8in,
+  top=0.65in,
+  bottom=0.65in,
+}
+\usepackage{xcolor}
+\definecolor{darkgray}{HTML}{222222}
+\definecolor{midgray}{HTML}{444444}
+\definecolor{lightgray}{HTML}{666666}
+
+% --- LINKS & HYPERREF ---
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    urlcolor=black,
+    linkcolor=black,
+    pdftitle={Resume - Ayush Shah},
+    pdfauthor={Ayush Shah},
+    pdfnewwindow=true,
+    pdfstartview={FitH},
+}
+
+% --- SECTION STYLE ---
+\usepackage{titlesec}
+\titleformat{\section}
+  {\color{black}\scshape\Large\bfseries}
+  {}
+  {0em}
+  {}[\titlerule]
+\titlespacing*{\section}{0pt}{1.4ex}{0.8ex}
+
+% --- ICONS ---
+\usepackage{fontawesome5}
+\newcommand{\icon}[1]{\textcolor{lightgray}{#1}}
+
+% --- CHECK EMPTY LINKS ---
+\usepackage{xstring}
+\newcommand{\projLinks}[2]{%
+  \hfill
+  \IfStrEq{#1}{}{}{%
+    \icon{\faGithub}\,\href{#1}{\footnotesize GitHub}%
+  }%
+  \IfStrEq{#2}{}{}{%
+    \quad \icon{\faGlobe}\,\href{#2}{\footnotesize Live}%
+  }%
+}
+
+% --- HEADER ---
+\newcommand{\resumeHeader}{
+    \begin{center}
+        {\Huge \scshape Ayush Shah}\\[4pt]
+        \large\textcolor{midgray}{Software Engineer | AI Agents \& Systems Developer}\\[6pt]
+        \small
+        \icon{\faMapMarker} ~ Hyderabad, India \quad \textbullet \quad
+        \icon{\faPhone} ~ +91 9346783905 \quad \textbullet \quad
+        \icon{\faEnvelope} ~ \href{mailto:ayushwasnothere@gmail.com}{ayushwasnothere@gmail.com}\\[4pt]
+        \icon{\faGlobe} ~ \href{https://cytrus.me}{cytrus.me} \quad \textbullet \quad
+        \icon{\faGithub} ~ \href{https://github.com/ayushwasnothere}{github.com/ayushwasnothere} \quad \textbullet \quad
+        \icon{\faLinkedin} ~ \href{https://linkedin.com/in/ayushwasnothere}{linkedin.com/in/ayushwasnothere}
+    \end{center}
+}
+
+% --- PROJECT ENTRY ---
+\newcommand{\project}[5]{%
+    \vspace{3pt}
+    \noindent\textbf{\large #1} \projLinks{#3}{#4} \\[2pt]
+    \textcolor{darkgray}{\textit{Tech Stack: #2}}
+    \begin{itemize}[leftmargin=1.2em, itemsep=1.5pt, topsep=1.5pt]
+        #5
+    \end{itemize}
+}
+
+% --- GENERAL STYLE ---
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\renewcommand{\baselinestretch}{1.02}
+\raggedbottom
+\usepackage{enumitem}
+
+% --- BEGIN DOCUMENT ---
+\begin{document}
+
+\resumeHeader
+
+\section*{Summary}
+\textcolor{darkgray}{Systems \& AI Software Engineer specialized in building terminal-native AI coding agents, high-performance backends (Rust, Go), and ROS 2 robotics control pipelines. Experienced in engineering low-latency network protocols, cloud automation tooling, and real-time web architectures.}
+
+\section*{Experience}
+\noindent\textbf{\large Robotics / Systems Software Intern} \hfill \textbf{2025 -- Present} \\
+\textit{Roboparadigm, Hyderabad, India}
+\begin{itemize}[leftmargin=1.2em, itemsep=2.5pt, topsep=2pt]
+    \item Developed and simulated advanced motion planning algorithms for 7DOF and OpenManipulator-X robotic arms using \textbf{ROS 2}, \textbf{MoveIt Task Constructor (MTC)}, and \textbf{Gazebo}.
+    \item Optimized kinematics, collision avoidance, and trajectory execution pipelines, reducing path generation latency for automated pick-and-place tasks.
+    \item Integrated real-time sensor feedback loops with ROS 2 nodes for precision spatial manipulation.
+\end{itemize}
+
+\section*{Education}
+\textbf{B.Tech in Computer Science and Engineering} \hfill \textbf{Expected 2028} \\
+\textit{Keshav Memorial College of Engineering, Hyderabad, Telangana}
+
+\section*{Technical Skills}
+\begin{tabular}{@{}p{0.25\textwidth} p{0.75\textwidth}}
+    \textbf{Languages} & TypeScript, Rust, Go, C/C++, Python, JavaScript, Bash, Lua \\
+    \textbf{AI \& Robotics} & AI Coding Agents, LLM Integration, ROS 2, MoveIt / MTC, Gazebo \\
+    \textbf{Systems \& Web} & React, Next.js, Tokio, Express, Actix Web, WebSockets, REST APIs \\
+    \textbf{Databases \& DevOps} & PostgreSQL, Redis, Docker, Git, Cloudflare Workers, AWS, Nginx, Linux \\
+\end{tabular}
+
+\section*{Selected High-Impact Projects}
+
+\project{Forge | Terminal-Native AI Coding Agent}
+    {TypeScript, Node.js, LLMs, CLI Architecture, TailwindCSS}
+    {https://github.com/ayushwasnothere/forge}
+    {https://forge.cytrus.me}
+    {
+      \item Architected an autonomous CLI AI agent capable of multi-file code editing, AST context building, shell execution, and pair programming directly inside the terminal.
+      \item Engineered context-aware file indexers and error trace parsers to enable accurate self-healing code generation.
+    }
+
+\project{7DOF MTC Arm Control | Robotic Motion Planning}
+    {C++, ROS 2, MoveIt Task Constructor, Gazebo, Docker}
+    {https://github.com/ayushwasnothere/7dof_mtc}
+    {}
+    {
+      \item Designed a MoveIt Task Constructor (MTC) package for 7-degree-of-freedom manipulators, enabling multi-stage trajectory planning and obstacle-aware manipulation.
+      \item Containerized ROS 2 workspace environments in Docker for reproducible robotic simulations.
+    }
+
+\project{Cloud-It | Cloud Infrastructure Automation Utility}
+    {TypeScript, Node.js, AWS (EC2, S3), Docker, DevOps}
+    {https://github.com/ayushwasnothere/cloud-it}
+    {}
+    {
+      \item Engineered a TypeScript infrastructure automation tool to streamline cloud workload deployment, container orchestration, and environment configuration across AWS services.
+    }
+
+\project{rust-smtp \& TempMail | Asynchronous Mail Engine}
+    {Rust, Tokio, Bun, Express, PostgreSQL, React, Nginx}
+    {https://github.com/ayushwasnothere/rust-smtp}
+    {https://tmail.cytrus.me}
+    {
+      \item Built a custom high-throughput SMTP server in Rust using Tokio for asynchronous, non-blocking email processing and MIME parsing.
+      \item Powered a disposable email platform with real-time inbox streaming via PostgreSQL \& Bun backend.
+    }
+
+\project{Raven | Real-Time High-Concurrency Chat Platform}
+    {Next.js, TypeScript, WebSockets, Redis, PostgreSQL, Prisma, Turborepo}
+    {https://github.com/ayushwasnothere/chat-app}
+    {https://raven.cytrus.me}
+    {
+      \item Engineered a scalable real-time messaging platform combining WebSockets for instant data propagation and REST APIs for authentication and fallback.
+    }
+
+\project{shrty | Low-Latency Link Shortener Microservice}
+    {Go, PostgreSQL, React, Cloudflare Turnstile, Vite}
+    {https://github.com/ayushwasnothere/shrty}
+    {https://shrty.cytrus.me}
+    {
+      \item Developed a microsecond-latency URL shortening microservice using Go, with Cloudflare Turnstile verification against bot abuse.
+    }
+
+\end{document}
+

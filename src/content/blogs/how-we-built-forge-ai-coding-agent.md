@@ -150,7 +150,7 @@ forge setup
 forge chat --allow-write --allow-execute
 ```
 
-* 🌐 **Website**: [forge.citxruzz.tech](https://forge.citxruzz.tech)
+* 🌐 **Website**: [forge.cytrus.me](https://forge.cytrus.me)
 * ⭐ **GitHub**: [github.com/ayushwasnothere/forge](https://github.com/ayushwasnothere/forge)
 * 📦 **npm**: [npmjs.com/package/forge-code-ai](https://www.npmjs.com/package/forge-code-ai)
 

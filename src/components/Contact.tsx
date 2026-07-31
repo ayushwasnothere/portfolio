@@ -48,6 +48,9 @@ export default function Contact() {
             <p className="text-muted-foreground mb-6 slide-up-and-fade">SOCIAL</p>
             <ul className="space-y-3">
               <li className="slide-up-and-fade">
+                <a href="/resume.pdf" target="_blank" rel="noreferrer" className="text-lg capitalize text-primary font-semibold hover:underline">Resume PDF ↗</a>
+              </li>
+              <li className="slide-up-and-fade">
                 <a href="https://github.com/ayushwasnothere" target="_blank" rel="noreferrer" className="text-lg capitalize hover:underline">GitHub</a>
               </li>
               <li className="slide-up-and-fade">
